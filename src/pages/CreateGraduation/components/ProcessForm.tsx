@@ -70,8 +70,7 @@ function ProcessForm({ isVisible, isClosed }: ProcessFormProps) {
       setModes(responseModes.data);
       setStudents([...responseStudents.data]);
     } catch (error) {
-      console.error("Failed to fetch data: ", error);
-      setError("Failed to load data, please try again.");
+      setError("Error al cargar los datos. Por favor, intente de nuevo.");
     }
   }, []);
 
@@ -114,8 +113,6 @@ function ProcessForm({ isVisible, isClosed }: ProcessFormProps) {
           navigate(`/studentProfile/${response.data.id}`);
         }
       } catch (error) {
-        console.error("Error al crear proceso:", error);
-
         setTitleError(
           "Este título ya ha sido registrado por otro estudiante. Por favor, ingrese un título diferente."
         );
@@ -139,8 +136,15 @@ function ProcessForm({ isVisible, isClosed }: ProcessFormProps) {
 
   const isSubmitDisabled = loading || !!titleError || !formik.isValid;
 
+  const handleClose = useCallback(() => {
+    formik.resetForm();
+    setTitleError(null);
+    setError(null);
+    isClosed();
+  }, [formik, isClosed]);
+
   return (
-    <Modal open={isVisible} onClose={isClosed}>
+    <Modal open={isVisible} onClose={handleClose}>
       <Box
         sx={{
           position: "absolute",
