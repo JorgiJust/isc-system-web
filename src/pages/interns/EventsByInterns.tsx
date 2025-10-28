@@ -59,8 +59,8 @@ const EventByInterns = () => {
       const clickHandler = createEventClickHandler(params.row.id);
 
       return (
-        <Tooltip title = "Ver eventos" placement = "bottom">
-          <IconButton color = "primary" aria-label = "ver" onClick = {clickHandler}>
+        <Tooltip title="Ver eventos" placement="bottom">
+          <IconButton color="primary" aria-label="ver" onClick={clickHandler}>
             <VisibilityIcon />
           </IconButton>
         </Tooltip>
@@ -131,10 +131,10 @@ const EventByInterns = () => {
     const eventKey = event.id ? `event-${event.id}` : `event-${event.title}-${event.is_supervisor}`;
 
     return (
-      <tr key = {eventKey}>
-        <td style = {{ padding: "8px", border: "1px solid #ddd" }}>{event.title}</td>
+      <tr key={eventKey}>
+        <td style={{ padding: "8px", border: "1px solid #ddd" }}>{event.title}</td>
         <td
-          style = {{
+          style={{
             padding: "8px",
             border: "1px solid #ddd",
             color: event.is_supervisor ? "orange" : "blue",
@@ -147,66 +147,63 @@ const EventByInterns = () => {
   }, []);
 
   return (
-    <div style = {{ height: "100vh", padding: "20px" }}>
-      <Typography variant = "h4" color = "primary" style = {{ marginBottom: "10px" }}>
+    <div style={{ padding: "20px" }}>
+      <Typography variant="h4" color="primary" style={{ marginBottom: "10px" }}>
         {"Lista de Becarios\r"}
       </Typography>
-      <Typography variant = "subtitle1" color = "textSecondary" style = {{ marginBottom: "20px" }}>
+      <Typography variant="subtitle1" color="textSecondary" style={{ marginBottom: "20px" }}>
         {"Eventos hechos por becarios\r"}
       </Typography>
 
       <div
-        style = {{
-          height: 400,
+        style={{
           width: "100%",
           overflow: "auto",
         }}
       >
         <div
-          style = {{
+          style={{
             minWidth: "800px",
-            height: "100%",
           }}
         >
           <DataGrid
-            rows = {students}
-            columns = {columns}
-            localeText = {dataGridLocaleText}
-            initialState = {{
+            rows={students}
+            columns={columns}
+            localeText={dataGridLocaleText}
+            initialState={{
               pagination: {
                 paginationModel: { page: 0, pageSize: 5 },
               },
             }}
-            getRowId = {getRowId}
-            classes = {{
+            getRowId={getRowId}
+            autoHeight
+            classes={{
               root: "bg-white dark:bg-gray-800",
               columnHeader: "bg-gray-200 dark:bg-gray-800 ",
               cell: "bg-white dark:bg-gray-800",
               row: "bg-white dark:bg-gray-800",
               columnHeaderTitle: "!font-bold text-center",
             }}
-            pageSizeOptions = {[5, 10]}
+            pageSizeOptions={[5, 10]}
           />
         </div>
       </div>
 
       <Dialog
-        open = {detailOpen}
-        onClose = {handleEditHoursClose}
-        aria-labelledby = "edit-hours-dialog-title"
-        sx = {{ "& .MuiDialog-paper": { width: "500px", maxWidth: "80%" } }}
+        open={detailOpen}
+        onClose={handleEditHoursClose}
+        aria-labelledby="edit-hours-dialog-title"
+        sx={{ "& .MuiDialog-paper": { width: "500px", maxWidth: "80%" } }}
       >
-        <DialogTitle id = "edit-hours-dialog-title">
-          <Typography
-            variant = "h5" align = "center" color = "primary"
-            style = {{ fontWeight: "bold" }}>
+        <DialogTitle id="edit-hours-dialog-title">
+          <Typography variant="h5" align="center" color="primary" style={{ fontWeight: "bold" }}>
             {selectedStudent?.name}
             {" -"} {selectedStudent?.total_hours} {"horas\r"}
           </Typography>
           <IconButton
-            aria-label = "close"
-            onClick = {handleEditHoursClose}
-            style = {{ color: "#231F74", position: "absolute", right: 3, top: 11 }}
+            aria-label="close"
+            onClick={handleEditHoursClose}
+            style={{ color: "#231F74", position: "absolute", right: 3, top: 11 }}
           >
             <CancelIcon />
           </IconButton>
@@ -215,7 +212,7 @@ const EventByInterns = () => {
           {selectedId && (
             <div>
               <table
-                style = {{
+                style={{
                   width: "100%",
                   marginTop: "10px",
                   borderCollapse: "collapse",
@@ -224,7 +221,7 @@ const EventByInterns = () => {
                 <thead>
                   <tr>
                     <th
-                      style = {{
+                      style={{
                         textAlign: "left",
                         padding: "8px",
                         backgroundColor: "#f0f0f0",
@@ -234,7 +231,7 @@ const EventByInterns = () => {
                       {"Evento\r"}
                     </th>
                     <th
-                      style = {{
+                      style={{
                         textAlign: "left",
                         padding: "8px",
                         backgroundColor: "#f0f0f0",
